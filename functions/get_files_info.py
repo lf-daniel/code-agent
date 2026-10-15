@@ -12,11 +12,9 @@ def get_files_info(working_directory: str, directory: str = ".") -> str:
         if not os.path.isdir(target_dir):
             return f'Error: "{target_dir}" is not a directory'
         #print(f'Success: "{target_dir}" is within the working directory')
-    except Exception as err:
-        print(f'Error: Unexpected {err=}, {type(err)=}')
 
     #list content
-    try:
+
         file_infos = []
         for item in os.listdir(target_dir):
             filepath = os.path.join(target_dir, item)
