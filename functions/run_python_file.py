@@ -41,3 +41,28 @@ def run_python_file(
 
     except Exception as err:
         return f'Error: Unexpected {err=}, {type(err)=}'
+
+schema_run_python_file = {
+    "type": "function",
+    "function": {
+        "name": "run_python_file",
+        "description": "run a python file",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "file_path": {
+                    "type": "string",
+                    "description": "File path of the script to execute, relative to working directory",
+                },
+                "args": {
+                    "type": "array",
+                    "items": {
+                        "type":"string"
+                    },
+                    "description": "arguments to pass into the function",
+                }
+            },
+            "required": ["file_path"],
+        },
+    },
+}

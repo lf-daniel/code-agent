@@ -21,3 +21,21 @@ def get_file_content(working_directory: str, file_path: str) -> str:
         return file_content_string
     except Exception as err:
         return f'Error: Unexpected {err=}, {type(err)=}'
+
+schema_get_file_content = {
+    "type": "function",
+    "function": {
+        "name": "get_file_content",
+        "description": "Return content from a file, truncated at MAX_CHARS from config.py",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "file_path": {
+                    "type": "string",
+                    "description": "File path of the file to explore content of, relative to working directory",
+                },
+            },
+            "required": ["file_path"],
+        },
+    },
+}
