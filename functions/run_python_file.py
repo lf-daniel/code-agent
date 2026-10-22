@@ -34,8 +34,8 @@ def run_python_file(
         else:
             if complete.stdout:
                 out_str.append(f'STDOUT: {complete.stdout}')
-                if complete.stderr:
-                    out_str.append(f'STDERR: {complete.stderr}')
+            if complete.stderr:
+                out_str.append(f'STDERR: {complete.stderr}')
 
         return "\n".join(out_str)
 
