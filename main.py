@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+import anthropic
 
 from config import MAX_ITERS
 from dotenv import load_dotenv
@@ -56,7 +57,8 @@ def main() -> None:
 
 def generate_content(client: OpenAI, messages: list, verbose: bool) -> str | None:
     response =  client.chat.completions.create(
-        model='openrouter/free',
+        # model='openrouter/free',
+        model='nvidia/nemotron-3.5-super-vl:free',
         messages=messages,
         tools=available_functions,
     )
@@ -79,7 +81,7 @@ def generate_content(client: OpenAI, messages: list, verbose: bool) -> str | Non
         if not result_message['content']:
             raise RuntimeError(f"Empty function response for {tool_call.function.name}")
         if verbose:
-            print(f"-> {result_message['content']}")
+            print(f"-> {result_message['content'][:100]}")
         messages.append(result_message)
 
     return None

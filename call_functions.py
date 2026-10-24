@@ -26,9 +26,9 @@ def call_function(tool_call, verbose: bool = False) -> dict:
     function_name = tool_call.function.name
     function_args = json.loads(tool_call.function.arguments or '{}')
     if verbose:
-        print(f'Calling function: {tool_call.function.name}({json.loads(tool_call.function.arguments or '{}')})')
+        print(f'Calling function: {tool_call.function.name}({function_args})')
     else:
-        print(f" - Calling function: {function_name}")
+        print(f" - Calling function: {function_name}({function_args.get('file_path', function_args.get('directory', 'None'))})")
 
     if function_name not in function_map:
         return {
